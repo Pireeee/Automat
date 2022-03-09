@@ -2,7 +2,7 @@ from JSON import JSON
 import json
 
 
-def Prepar():
+def Prepar():  #faut commenter son code
     Action  = ""
     Resultat = ""
     a = True
@@ -19,7 +19,7 @@ def Prepar():
 
 
 
-def test():
+def test():    # c koi 7 fonq°
     lire  = JSON("","")
     input_dict = lire.lire_json()
     for clef in input_dict:

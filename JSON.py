@@ -1,7 +1,7 @@
 #from dbm import gnu
 import json
 
-class JSON():
+class JSON(): #dans la vi il faut commenter surtout si on est en groupes
     def __init__(self,action,resultat):
         self.action = action
         self.resultat = resultat
