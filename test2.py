@@ -1,40 +1,63 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+import pandas as pd
+# Create node characteristics DF
 
-def _build_graph(show=True):
-    """Load word dependencies into graph using networkx. Enables easy traversal of dependencies for parsing particular patterns.
-    One graph is created for each sentence.
+carac = pd.DataFrame({'ID':['Jules\nFisher', 'Peggy\nEisenhauer', 'Jennifer\nTipton', 
+                            'Thomas\nSkelton', 'Donald\nHolder', 'Christopher\nAkerlind', 
+                            'Howell\nBinkley', 'Jean\nRosenthal', 'Stanley\nMcCandless', 
+                            'Brian\nMacDevitt', 'Kenneth\nPosner', 'Natasha\nKatz', 
+                            'Jeff\nCroiter', 'Jennifer\nSchriever', 'Roger\nMorgan', 
+                            'Paul\nGallo', 'Ming Cho\nLee', 'Ken\nBillington', 
+                            'Tharon\nMusser', 'Mike\nBaldassari', 'Brian\nMonahan', 
+                            'Peter\nNigrini', 'Richard\nPilbrow', 'Beverly\nEmmons', 
+                            'Robert\nOrnbo', 'William\nRitman', 'Yale\nSchool\nof Drama', 
+                            'Stephen\nStrawbridge', 'Pat\nCollins', 'David\nLander', 
+                            'NYU\nTisch', 'Allen Lee\nHughes', 'Bradley\nKing', 
+                            'Dennis\nParichy', 'SUNY\nPurchase', 'Robert\nWierzel', 
+                            'Mary Louise\nGeiger', 'Jane\nCox', 'Jo\nMielziner', 
+                            'Bill\nMintzer', 'Clifton\nTaylor', 'John\nGleason', 
+                            'Rita Kogler\nCarver', 'Peggy\nClark', 'Gilbert\nHemsley Jr', 
+                            'Peter\nHunt', 'Williamstown\nTheatre\nFestival', 
+                            'James\nIngalls', 'Rui\nRita', 'Lee\nWatson', 'Japhy\nWeideman', 
+                            'Kevin\nAdams', 'Richard\nNelson', 'Jay\nWoods', 
+                            'Ian\nCalderon', 'Stacey\nBoggs', 'Al\nCrawford', 
+                            'Robert\nHenderson'], 
+                      
+                      'type':['Person','Person','Person','Person', 'Person', 
+                              'Person', 'Person', 'Person', 'Person', 
+                              'Person', 'Person', 'Person', 'Person',
+                              'Person', 'Person', 'Person', 'Person', 'Person',
+                              'Person', 'Person', 'Person', 'Person', 'Person',
+                              'Person', 'Person', 'Person', 'School', 'Person',
+                              'Person', 'Person', 'School', 'Person', 'Person',
+                              'Person', 'School', 'Person', 'Person', 'Person',
+                              'Person', 'Person',
+                              'Person', 'Person', 'Person', 'Person',
+                              'Person', 'Person', 'Org', 'Person', 
+                              'Person', 'Person', 'Person', 'Person', 
+                              'Person', 'Person', 'Person', 'Person', 'Person', 
+                              'Person']})
 
-    Args:
-        show (bool): If set to True, labeled visualization of network will be opened via matplotlib for each sentence
+# Create graph object using relationships DF
+G = nx.from_pandas_edgelist(relationships, 'from', 'to', create_using=nx.Graph())
 
-    Returns:
-        None: Global variable G is set from within function
+# Set colors by type
+carac = carac.set_index('ID')
+carac = carac.reindex(G.nodes())
+ 
+carac['type'] = pd.Categorical(carac['type'])
+carac['type'].cat.codes
 
-    """
-    global G
-    G = nx.Graph()
-    node_labels, edge_labels = {}, {}
-    for idx, dep in enumerate(A.deps):
+# Set node size by type
+node_sizes = [4500 if entry != 'Person' else 1500 for entry in carac.type]
 
-        types = ["dependent", "governor"]
+# Set color map
+cmap = matplotlib.colors.ListedColormap(['darkorange', 'lightgray', 'dodgerblue'])
 
-        # nodes, labels
-        for x in types:
-            G.add_node(str(dep[x]), word=dep[x + "Gloss"], pos=A.lookup[dep[x]]["pos"])
-            node_labels[str(dep[x])] = dep[x + "Gloss"] + " : " + A.lookup[dep[x]]["pos"]
+# Draw the graph and specify our characteristics
+nx.draw(G, with_labels=True, node_color=carac['type'].cat.codes, cmap=cmap, 
+        node_size=node_sizes, font_size=8, font_weight="bold", width=0.75, 
+        edgecolors='gray')
 
-        # edges, labels
-        G.add_edge(str(dep[types[0]]), str(dep[types[1]]), dep=dep["dep"])
-        edge_labels[(str(dep[types[0]]), str(dep[types[1]]))] = dep["dep"]
-
-    if show == True:
-        pos = nx.spring_layout(G)
-        nx.draw_networkx(G, pos=pos, labels=node_labels, node_color="white", alpha=.5)
-        nx.draw_networkx_edge_labels(G, pos=pos, edge_labels=edge_labels)
-        plt.show()
-
-
-#########################################
-# Dependency / POS parsing functions
-######################################### 
+plt.show()
