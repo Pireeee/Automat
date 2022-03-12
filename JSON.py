@@ -1,40 +1,43 @@
 #from dbm import gnu
 import json
 
-class JSON(): #dans la vi il faut commenter surtout si on est en groupes
-    def __init__(self,action,resultat):
-        self.action = action
-        self.resultat = resultat
+
+class JSON():  # dans la vi il faut commenter surtout si on est en groupes
+    def __init__(self, action, alphabet, transitions, etats_finaux):
+        self.action = [action]
+        self.alphabet = [alphabet]
+        self.transitions = [transitions]
+        self.etats_finaux = etats_finaux
         self.input_dict = ""
         self.auto_file = 'nouveau_automate.json'
 
-    def lire_json(self): #retoune le JSON
+    def lire_json(self):  # retoune le JSON
         with open(self.auto_file, 'r') as input:
             self.input_dict = json.load(input)
         return self.input_dict
 
-    #def get_input_dict(self):
+    # def get_input_dict(self):
     #    return self.input_dict
-
 
     def generer_json(self):
         contenu = json.dumps({
-            "action": self.action,
-            "resultat": self.resultat,
-            
-            "etats initial":"1",
-            "etats finaux":"2:3"
+            "Etats": self.action,
+            "Alphabet": self.alphabet,
+            "Transitions": [self.transitions],
+
+            "etats initial": "q0",
+            "etats finaux": [self.etats_finaux],
+            "Layout": "spring"
         }, sort_keys=True, indent=4)
 
-        fichier = open("automate_input.json","w")
+        fichier = open("automate_input.json", "w")
         fichier.write(contenu)
         fichier.close()
 
-    
 
-#def afficher_automate():
+# def afficher_automate():
 
-#def successors(dfa, state):
+# def successors(dfa, state):
 #   if state not in dfa.states:
 #       print("error : le state specifié '" + state + "' ne fait pas partie de l'automate.")
 #       return
@@ -46,7 +49,7 @@ class JSON(): #dans la vi il faut commenter surtout si on est en groupes
 #
 #   return ret
 
-#def list_accessible(dfa):
+# def list_accessible(dfa):
 #   visited = []
 #   to_visit = [dfa.init]
 #
@@ -59,28 +62,27 @@ class JSON(): #dans la vi il faut commenter surtout si on est en groupes
 #
 #   return visited
 
-#def accessible(dfa, state):
+# def accessible(dfa, state):
 #   if state not in dfa.states:
 #       print("error : state '" + state + "' ne fait pas partie de l'automate.")
 #       return False
 #
 #   return state in list_accessible(dfa)
 
-#def accessible(dfa):
+# def accessible(dfa):
 #   return len(dfa.states) == len(list_accessible(dfa))
-    
-
-#def list_co-accessible(dfa):
-#   
-#
-#
-#
-#
-#
-#
 
 
+# def list_co-accessible(dfa):
+#
+#
+#
+#
+#
+#
+#
 
-#def save_json():
 
-#trouver library img
+# def save_json():
+
+# trouver library img
