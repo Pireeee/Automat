@@ -2,11 +2,11 @@
 import json
 
 class JSON(): #dans la vi il faut commenter surtout si on est en groupes
-    def __init__(self,action,resultat):
+    def __init__(self,action,resultat, file):
         self.action = action
         self.resultat = resultat
         self.input_dict = ""
-        self.auto_file = 'nouveau_automate.json'
+        self.auto_file = file
 
     def lire_json(self): #retoune le JSON
         with open(self.auto_file, 'r') as input:

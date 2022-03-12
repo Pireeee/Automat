@@ -10,7 +10,8 @@
             "q0,q5":"a,b"
         }
     ],
-    "Etat initial":"q0",
+    "Etat initial":["q0"],
     "Etats finaux":["q1","q2","q5"],
+    "Etats transitions":[""],
     "Layout":"spring"
 }

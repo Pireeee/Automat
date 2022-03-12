@@ -1,0 +1,27 @@
+{
+    "Etats": ["q0", "q1", "q2", "q5"], 
+    "Alphabet": ["a", "b", "a,b"], 
+    "Transitions": 
+    [
+        {
+            "q0,q1": "a",
+            "q0,q2": "b",
+            "q1,q2": "a",
+            "q1,q1": "b",
+            "q0,q5": "a,b",
+            "q1,trash5": "a,b",
+            "q2,trash6": "a",
+            "q2,trash7": "b",
+            "q2,trash8": "a,b",
+            "q5,trash9": "a",
+            "q5,trash10": "b",
+            "q5,trash11": "a,b"
+        }
+    ], 
+    "Etat initial": "q0",
+            
+    "Etats finaux": ["q1", "q2", "q5"], "Etats transitions": [""], "Layout": "spring"}
+q0 = a,b [a,b]
+q1 = a,b [a,b]
+q2 = a,b [a,b]
+q5 = a,b [a,b]
