@@ -1,9 +1,9 @@
-from gettext import translation
 from JSON import JSON
-import json
+from Display import Display
+from automate import Automate
 
 
-def Prepar():  # faut commenter son code
+def Generer_Json():
     alphabet = []
     etats_finaux = []
     transitions = {}
@@ -65,3 +65,19 @@ def Prepar():  # faut commenter son code
     temp = JSON(etats, alphabet, transi_finale,
                 etat_initial, etats_finaux, "")
     temp.generer_json()
+
+
+def Afficher():  # appele la class Display pour pouvoir la tester
+    var = Display()
+    var.generate_tuples_node()
+    var.draw_graph()
+
+
+
+
+Generer_Json()
+Afficher()
+
+
+automate_test = Automate("automate_initial.json")
+automate_test.determiniser()
