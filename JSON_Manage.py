@@ -62,7 +62,6 @@ def Prepar():  # faut commenter son code
 
     transi_finale = [transitions]
 
-
     bie = JSON(etats, alphabet, transi_finale,
                etat_initial, etats_finaux)
     bie.generer_json()
