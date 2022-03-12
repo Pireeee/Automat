@@ -10,7 +10,7 @@ class JSON():  # dans la vi il faut commenter surtout si on est en groupes
         self.etat_initial = etat_initial
         self.etats_finaux = etats_finaux
         self.input_dict = ""
-        self.auto_file = 'nouveau_automate.json'
+        self.auto_file = file
 
     def lire_json(self):  # retoune le JSON
         with open(self.auto_file, 'r') as input:

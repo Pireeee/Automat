@@ -1,0 +1,12 @@
+    def listetat(self):
+        initial = self.JSON['Etat initial']
+        final = self.JSON['Etats finaux']
+        trans = self.JSON['Etats transitions']
+        listetat = [initial]
+        if type(final) is list and final!=[""]:
+            for x in final:
+                listetat.append(x)
+        if type(trans) is list and trans!=[""]:
+            for x in trans:
+                listetat.append(x)
+        return listetat
