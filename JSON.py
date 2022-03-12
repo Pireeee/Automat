@@ -3,10 +3,11 @@ import json
 
 
 class JSON():  # dans la vi il faut commenter surtout si on est en groupes
-    def __init__(self, action, alphabet, transitions, etats_finaux):
-        self.action = [action]
-        self.alphabet = [alphabet]
-        self.transitions = [transitions]
+    def __init__(self, etats, alphabet, transitions, etat_initial, etats_finaux):
+        self.etats = etats
+        self.alphabet = alphabet
+        self.transitions = transitions
+        self.etat_initial = etat_initial
         self.etats_finaux = etats_finaux
         self.input_dict = ""
         self.auto_file = 'nouveau_automate.json'
@@ -21,18 +22,17 @@ class JSON():  # dans la vi il faut commenter surtout si on est en groupes
 
     def generer_json(self):
         contenu = json.dumps({
-            "Etats": self.action,
+            "Etats": self.etats,
             "Alphabet": self.alphabet,
-            "Transitions": [self.transitions],
-
-            "etats initial": "q0",
-            "etats finaux": [self.etats_finaux],
+            "Transitions": self.transitions,
+            "Etat initial": self.etat_initial,
+            "Etats finaux": self.etats_finaux,
             "Layout": "spring"
-        }, sort_keys=True, indent=4)
-
-        fichier = open("automate_input.json", "w")
-        fichier.write(contenu)
-        fichier.close()
+        }, indent=4)
+        print(contenu)
+        with open("automate_input.json", "w") as fichier:
+            fichier.write(contenu)
+            fichier.close()
 
 
 # def afficher_automate():
