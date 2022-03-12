@@ -7,6 +7,8 @@ voici le format du JSON
     "Etats finaux":liste de str ,
     "Layout":str ("spring" par défaut)
 
+le fichier json de save s'appelle toujours nouvel_automate.json
+
 lors de l'affichage vous pouvez changer les layouts (dispostion des nodes) les disponibles sont :
 -random
 -spectral

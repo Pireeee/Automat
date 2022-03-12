@@ -26,7 +26,6 @@ class JSON():  # dans la vi il faut commenter surtout si on est en groupes
             "Etats finaux": self.etats_finaux,
             "Layout": "spring"
         }, indent=4)
-        print(contenu)
         with open(self.auto_file, "w") as fichier:
             fichier.write(contenu)
             fichier.close()

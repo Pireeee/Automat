@@ -63,21 +63,21 @@ def Generer_Json():
     transi_finale = [transitions]
 
     temp = JSON(etats, alphabet, transi_finale,
-                etat_initial, etats_finaux, "")
+                etat_initial, etats_finaux, "nouvel_automate.json")
     temp.generer_json()
 
 
 def Afficher():  # appele la class Display pour pouvoir la tester
-    var = Display()
+    var = Display("nouvel_automate.json")
     var.generate_tuples_node()
     var.draw_graph()
 
 
-
-
-Generer_Json()
+# Generer_Json()
 Afficher()
 
 
-automate_test = Automate("automate_initial.json")
+automate_test = Automate("nouvel_automate.json")
 automate_test.determiniser()
+
+Afficher()
