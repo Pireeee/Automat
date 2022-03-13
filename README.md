@@ -9,6 +9,11 @@ voici le format du JSON
 
 le fichier json de save s'appelle toujours nouvel_automate.json
 
+Pierre sur le display de l'automate
+Martin sur l'automate en lui-meme
+Nicolas sur l'accessibilité et la co-accessibilité (mis en commentaire)
+Raphael sur la lecture et la generation du json ainsi que la liaison des fichier
+
 lors de l'affichage vous pouvez changer les layouts (dispostion des nodes) les disponibles sont :
 -random
 -spectral

@@ -76,8 +76,76 @@ def Afficher():  # appele la class Display pour pouvoir la tester
 # Generer_Json()
 Afficher()
 
+"""def successors(dfa, state):
+   if state not in dfa.states:
+       print("error : l'etat specifié '" + state + "' ne fait pas partie de l'automate.")
+       return
+
+   ret = []
+   for (symbol, dst_state) in dfa.transitions[state]:
+       if dst_state not in ret:
+           ret.append(dst_state)
+
+   return ret
+def list_accessible(dfa):
+   visited = []
+   to_visit = [dfa.init]
+
+   while len(to_visit) > 0:
+       state = to_visit.pop()
+       visited.append(state)
+       for succ in successors(dfa, state):
+           if succ not in visited and succ not in to_visit:
+               to_visit.append(succ)
+
+   return visited
+def accessible(dfa, state):
+   if state not in dfa.states:
+       print("error : etat '" + state + "' ne fait pas partie de l'automate.")
+       return False
+
+   return state in list_accessible(dfa)
+def accessible(dfa):
+   return len(dfa.states) == len(list_accessible(dfa))
+
+
+
+def predecessors(dfa, state):
+    if state not in dfa.states:
+        print("error : l'etat specifié '" + state + "' ne fait pas partie de l'automate.")
+        return
+ 
+    ret = []
+    for src_state in dfa.states:
+        for (symbol, dst_state) in dfa.transitions[src_state]:
+            if dst_state == state and src_state not in ret:
+                ret.append(src_state)
+ 
+    return ret
+    
+def list_coaccessible(dfa):
+    visited = []
+    to_visit = dfa.finals.copy()
+
+    while len(to_visit) > 0:
+        state = to_visit.pop()
+        visited.append(state)
+        for pred in predecessors(dfa, state):
+            if pred not in visited and pred not in to_visit:
+                to_visit.append(pred)
+
+    return visited
+
+def coaccessible(dfa, state):
+    if state not in dfa.states:
+        print("error : etat '" + state + "' ne fait pas partie de l'automate.")
+        return
+
+    return state in list_coaccessible(dfa)
+
+def coaccessible(dfa):
+    return len(dfa.states) == len(list_coaccessible(dfa))"""
+
 
 automate_test = Automate("nouvel_automate.json")
 automate_test.determiniser()
-
-Afficher()
